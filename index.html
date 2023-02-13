@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="style.css" rel="stylesheet" />
+    <script defer src="index.js"></script>
+    <title>Todo-list</title>
+  </head>
+  <body>
+    <h1 class="intro">mo's todo list</h1>
+    <div class="todo-manipulate">
+      <div class="add-todo">
+        <input
+          type="text"
+          autocomplete="off"
+          value=""
+          placeholder="What do you have in mind?"
+          class="input-add-todo"
+        />
+        <button class="btn-add-todo">
+          <svg
+            width="50px"
+            height="50px"
+            viewBox="0 0 24.00 24.00"
+            fill="#FF6F47"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#FFF"
+          >
+            <path
+              class="path"
+              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+              stroke="#FF6F47"
+              stroke-width="1.584"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              class="path-inner"
+              d="M8 12H16"
+              stroke="#FFF"
+              stroke-width="1.584"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              class="path-inner"
+              d="M12 16V8"
+              stroke="#FFF"
+              stroke-width="1.584"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="sort-todos">
+        <select class="sort-by">
+          <option value="all">all</option>
+          <option value="completed">completed</option>
+          <option value="uncompleted">uncompleted</option>
+        </select>
+      </div>
+    </div>
+    <div class="todo-list"></div>
+  </body>
+</html>
