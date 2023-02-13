@@ -13,7 +13,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background-image: linear-gradient(120deg, #f6d365, #fda085);
-  padding: 0 0.8rem;
+  padding: 0.8rem;
 }
 
 svg {
