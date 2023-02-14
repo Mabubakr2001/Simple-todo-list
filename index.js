@@ -100,7 +100,8 @@ function interactWithLocalStorage(interactMethod) {
   const interactMethodLower = interactMethod.toLowerCase();
   if (interactMethodLower === "set")
     return localStorage.setItem("allTodos", JSON.stringify(todosArr));
-  if (interactMethodLower === "get") return localStorage.getItem("allTodos");
+  if (interactMethodLower === "get")
+    return JSON.parse(localStorage.getItem("allTodos"));
 }
 
 btnAddTodo.addEventListener("click", () => {
@@ -126,7 +127,7 @@ sortBySelect.addEventListener("change", (event) =>
 );
 
 window.addEventListener("load", () => {
-  const localStorageCreatedTodos = JSON.parse(interactWithLocalStorage("get"));
+  const localStorageCreatedTodos = interactWithLocalStorage("get");
   if (localStorageCreatedTodos == null) return;
   todosArr = localStorageCreatedTodos;
   localStorageCreatedTodos.forEach((todo) =>
