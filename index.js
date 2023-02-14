@@ -52,7 +52,7 @@ function finishTodo(clickedSpot) {
     (todo) => todo.name === theNameForCurrentTodo.textContent
   );
   correspondingObject.state = targetTodoElement.dataset.state;
-  this.interactWithLocalStorage("set");
+  interactWithLocalStorage("set");
 }
 
 function deleteTodo(clickedSpot) {
@@ -72,7 +72,7 @@ function deleteTodo(clickedSpot) {
     localStorage.clear();
     return;
   }
-  this.interactWithLocalStorage("set");
+  interactWithLocalStorage("set");
 }
 
 function sortTodos(sortMethod) {
