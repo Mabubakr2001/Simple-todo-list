@@ -4,7 +4,7 @@ const sortBySelect = document.querySelector(".sort-by");
 const todoList = document.querySelector(".todo-list");
 const finishTodoBtn = document.querySelector(".btn-done");
 const deleteTodoBtn = document.querySelector(".btn-delete");
-let todosArr = [];
+let allTodosArr = [];
 
 function createTodo(fromLocalStorage = false, todoName, todoState) {
   if (todoName === "") return;
@@ -33,7 +33,7 @@ function createTodo(fromLocalStorage = false, todoName, todoState) {
   `;
 
   if (!fromLocalStorage) {
-    todosArr.push({
+    allTodosArr.push({
       name: todoName,
       state: todoState,
     });
@@ -48,7 +48,7 @@ function finishTodo(clickedSpot) {
   if (targetTodoElement == null) return;
   targetTodoElement.dataset.state = "completed";
   const theNameForCurrentTodo = targetTodoElement.querySelector(".todo-name");
-  const correspondingObject = todosArr.find(
+  const correspondingObject = allTodosArr.find(
     (todo) => todo.name === theNameForCurrentTodo.textContent
   );
   correspondingObject.state = targetTodoElement.dataset.state;
@@ -60,15 +60,15 @@ function deleteTodo(clickedSpot) {
   if (targetTodoElement == null) return;
   targetTodoElement.style.animation = "slideOut 1s ease-in-out";
   const theNameForCurrentTodo = targetTodoElement.querySelector(".todo-name");
-  const correspondingObject = todosArr.findIndex(
+  const correspondingObject = allTodosArr.findIndex(
     (todo) => todo.name === theNameForCurrentTodo.textContent
   );
   if (correspondingObject === -1) return;
-  todosArr.splice(correspondingObject, 1);
+  allTodosArr.splice(correspondingObject, 1);
   targetTodoElement.addEventListener("animationend", () =>
     targetTodoElement.remove()
   );
-  if (todosArr.length === 0) {
+  if (allTodosArr.length === 0) {
     localStorage.clear();
     return;
   }
@@ -99,7 +99,7 @@ function sortTodos(sortMethod) {
 function interactWithLocalStorage(interactMethod) {
   const interactMethodLower = interactMethod.toLowerCase();
   if (interactMethodLower === "set")
-    return localStorage.setItem("allTodos", JSON.stringify(todosArr));
+    return localStorage.setItem("allTodos", JSON.stringify(allTodosArr));
   if (interactMethodLower === "get")
     return JSON.parse(localStorage.getItem("allTodos"));
 }
@@ -129,7 +129,7 @@ sortBySelect.addEventListener("change", (event) =>
 window.addEventListener("load", () => {
   const localStorageCreatedTodos = interactWithLocalStorage("get");
   if (localStorageCreatedTodos == null) return;
-  todosArr = localStorageCreatedTodos;
+  allTodosArr = localStorageCreatedTodos;
   localStorageCreatedTodos.forEach((todo) =>
     createTodo(true, todo.name, todo.state)
   );
